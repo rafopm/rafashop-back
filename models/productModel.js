@@ -13,16 +13,16 @@ const productSchema = mongoose.Schema(
     categoria: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Categoria",
-      required: true
+      required: [true, "Por favor, ingresa una categoria para el producto"]
     },
     marca: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Marca",
-      required: true
+      required: [true, "Por favor, ingresa una marca para el producto"]
     },
     modelo: {
       type: String,
-      required: true
+      required: [true, "Por favor, ingresa un modelo para el producto"]
     },
     precio: {
       valor: {
@@ -38,7 +38,7 @@ const productSchema = mongoose.Schema(
       {
         tipo: {
           type: String,
-          enum: ["porcentaje", "cantidad"], // Asegura que el tipo de descuento sea válido
+          enum: ["porcentaje", "cantidad"], 
           required: [true, "Por favor, ingresa el tipo de descuento"]
         },
         valor: {
@@ -102,7 +102,8 @@ const productSchema = mongoose.Schema(
       material_cuchillas: String,
       peso: Number,
       profundidad: Number
-    }
+    },
+    activo:Boolean,
   },
   {
     timestamps: true

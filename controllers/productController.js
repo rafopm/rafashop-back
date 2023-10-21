@@ -36,15 +36,15 @@ const createProduct = asyncHandler(async(req, res) => {
     }
 })
 
-// update a product
+
 const updateProduct = asyncHandler(async(req, res) => {
     try {
         const {id} = req.params;
         const product = await Product.findByIdAndUpdate(id, req.body);
-        // we cannot find any product in database
+        
         if(!product){
             res.status(404);
-            throw new Error(`cannot find any product with ID ${id}`);
+            throw new Error(`No se pudo encontrar un producto con ID ${id}`);
         }
         const updatedProduct = await Product.findById(id);
         res.status(200).json(updatedProduct);
@@ -55,21 +55,27 @@ const updateProduct = asyncHandler(async(req, res) => {
     }
 })
 
-const deleteProduct = asyncHandler(async(req, res) =>{
+const deleteProduct = asyncHandler(async (req, res) => {
     try {
-        const {id} = req.params;
-        const product = await Product.findByIdAndDelete(id);
-        if(!product){
-            res.status(404);
-            throw new Error(`cannot find any product with ID ${id}`);
-        }
-        res.status(200).json(product);
+        const { id } = req.params;
         
+        const updatedProduct = await Product.findByIdAndUpdate(
+            id,
+            { activo: false },
+            { new: true } 
+        );
+        
+        if (!updatedProduct) {
+            res.status(404);
+            throw new Error(`No se pudo encontrar un producto con ID ${id}`);
+        }
+        
+        res.status(200).json(updatedProduct);
     } catch (error) {
         res.status(500);
         throw new Error(error.message);
     }
-})
+});
 
 module.exports = {
     getProducts,
