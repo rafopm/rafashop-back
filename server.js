@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const proudctRoute = require('./routes/productRoute');
+const productRoute = require('./routes/productRoute');
 const errorMiddleware = require('./middleware/errorMiddleware')
 var cors = require('cors')
 
@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: false}))
 
 //routes
 
-app.use('/api/products', proudctRoute);
+app.use('/api/products', productRoute);
 
 app.get('/', (req, res) => {
     res.send('Hello NODE API')
