@@ -1,7 +1,6 @@
 const Product = require('../models/productModel')
 const asyncHandler = require('express-async-handler')
 
-// get all product
 const getProducts = asyncHandler(async(req, res) => {
     try {
         const products = await Product.find({});
@@ -12,7 +11,6 @@ const getProducts = asyncHandler(async(req, res) => {
     }
 })
 
-// get a single product
 const getProduct = asyncHandler(async(req, res) =>{
     try {
         const {id} = req.params;
@@ -24,7 +22,6 @@ const getProduct = asyncHandler(async(req, res) =>{
     }
 })
 
-// create a product
 const createProduct = asyncHandler(async(req, res) => {
     try {
         const product = await Product.create(req.body)
@@ -35,7 +32,6 @@ const createProduct = asyncHandler(async(req, res) => {
         throw new Error(error.message);
     }
 })
-
 
 const updateProduct = asyncHandler(async(req, res) => {
     try {

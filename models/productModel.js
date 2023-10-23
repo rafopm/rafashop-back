@@ -90,18 +90,12 @@ const productSchema = mongoose.Schema(
       required: true
     },
     detalles: {
-      condicion: String,
-      garantia: String,
-      caracteristicas: String,
-      formato: String,
-      potencia: String,
-      pais_origen: String,
-      material: String,
-      tipo_ensamblado: String,
-      capacidad: String,
-      material_cuchillas: String,
-      peso: Number,
-      profundidad: Number
+      type: String,
+      required: false
+    },
+    informacion_adicional: {
+      type: String,
+      required: false
     },
     activo:Boolean,
   },
