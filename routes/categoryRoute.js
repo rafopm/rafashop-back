@@ -1,5 +1,5 @@
 const express = require('express');
-const Category = require('../models/categoryModel');
+//const Category = require('../models/categoryModel');
 const { getCategories,
     getCategory,
     createCategory,
