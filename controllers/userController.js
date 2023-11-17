@@ -26,6 +26,7 @@ const getUser = asyncHandler(async(req, res) =>{
 
 const createUser = asyncHandler(async (req, res) => {
     try {
+      console.log(req.body)
       const { password } = req.body;
   
       // Hashear la contraseña
@@ -98,7 +99,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       // Generar un token JWT para el usuario
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-        expiresIn: '1h', // El token expira en 1 hora, puedes ajustar este valor según tus necesidades
+        expiresIn: '24h', // El token expira en 1 hora, puedes ajustar este valor según tus necesidades
       });
   
       res.status(200).json({
@@ -106,9 +107,10 @@ const loginUser = asyncHandler(async (req, res) => {
         nombres: user.nombres,
         apellidos: user.apellidos,
         email: user.email,
-        roles: user.roles,
+        rol: user.rol,
         token: token,
       });
+      console.log(token)
     } else {
       // Si las credenciales son inválidas, enviar un mensaje de error
       res.status(401);

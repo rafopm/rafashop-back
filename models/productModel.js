@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+// const Category = require("./categoryModel");
+// const Brand = require("./brandModel");
 
 const productSchema = mongoose.Schema(
   {
@@ -12,12 +14,12 @@ const productSchema = mongoose.Schema(
     },
     categoria: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Categoria",
+      ref: "categorias",
       required: [true, "Por favor, ingresa una categoria para el producto"]
     },
     marca: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Marca",
+      ref: "marcas",
       required: [true, "Por favor, ingresa una marca para el producto"]
     },
     modelo: {
