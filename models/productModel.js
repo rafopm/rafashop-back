@@ -27,79 +27,52 @@ const productSchema = mongoose.Schema(
       required: [true, "Por favor, ingresa un modelo para el producto"]
     },
     precio: {
-      valor: {
         type: Number,
         required: [true, "Por favor, ingresa el precio del producto"]
-      },
-      moneda: {
-        type: String,
-        required: [true, "Por favor, ingresa la moneda del precio"]
-      }
     },
-    descuentos: [
-      {
-        tipo: {
-          type: String,
-          enum: ["porcentaje", "cantidad"], 
-          required: [true, "Por favor, ingresa el tipo de descuento"]
-        },
-        valor: {
-          type: Number,
-          required: [true, "Por favor, ingresa el valor del descuento"]
-        }
-      }
-    ],
+    descuentos:
+    {
+      type: Number,
+    },
     imagenes: [
       {
         url: {
           type: String,
-          required: true
         },
         descripcion: {
           type: String,
-          required: true
         }
       }
     ],
     rating: {
       rate: {
         type: Number,
-        required: true
       },
       cantidad_valoraciones: {
         type: Number,
-        required: true
       }
     },
-    estock: {
-      cantidad: {
-        type: Number,
-        required: true
-      }
+    stock:
+    {
+      type: Number,
     },
+
     intereses_clientes: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Cliente"
       }
     ],
-    fecha_modificacion: {
-      type: Date,
-      default: Date.now
-    },
     usuario_modificacion: {
       type: String,
-      required: true
     },
     detalles: {
       type: String,
-      required: false
     },
     informacion_adicional: {
       type: String,
-      required: false
     },
-    activo:Boolean,
+    activo: Boolean,
   },
   {
     timestamps: true
